@@ -1,0 +1,143 @@
+fileFormatVersion: 2
+guid: 96a576df7dcb81641bc810c3c0f7c2d5
+timeCreated: 1435584872
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: SceneSprites_0
+    21300002: SceneSprites_1
+    21300004: SceneSprites_2
+    21300006: SceneSprites_3
+    21300008: SceneSprites_4
+    21300010: SceneSprites_5
+    21300012: SceneSprites_6
+    21300014: SceneSprites_7
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: SceneSprites_0
+      rect:
+        serializedVersion: 2
+        x: 930
+        y: 502
+        width: 118
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SceneSprites_1
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 439
+        width: 62
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SceneSprites_2
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 152
+        width: 301
+        height: 301
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SceneSprites_3
+      rect:
+        serializedVersion: 2
+        x: 1275
+        y: 274
+        width: 29
+        height: 194
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SceneSprites_4
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 149
+        width: 365
+        height: 246
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SceneSprites_5
+      rect:
+        serializedVersion: 2
+        x: 890
+        y: 286
+        width: 288
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SceneSprites_6
+      rect:
+        serializedVersion: 2
+        x: 985
+        y: 225
+        width: 61
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SceneSprites_7
+      rect:
+        serializedVersion: 2
+        x: 884
+        y: 43
+        width: 367
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
