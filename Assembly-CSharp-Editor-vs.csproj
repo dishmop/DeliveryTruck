@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{CCCFE8C0-1B34-6A6C-6419-9AA7D9D597CC}</ProjectGuid>
+	<ProjectGuid>{BDCAF99B-8334-27D5-3017-C6884A817819}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -202,10 +202,10 @@
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="NGUI">
- <HintPath>C:/Users/oior2/Documents/DeliveryTruck/Assets/Fantasy-Colorable/ThirdParty/NGUI/DLLs/NGUI.dll</HintPath>
+ <HintPath>C:/Users/oior2/Documents/Delivery Truck/Assets/Fantasy-Colorable/ThirdParty/NGUI/DLLs/NGUI.dll</HintPath>
  </Reference>
  <Reference Include="NGUI_Editor">
- <HintPath>C:/Users/oior2/Documents/DeliveryTruck/Assets/Fantasy-Colorable/ThirdParty/NGUI/DLLs/Editor/NGUI_Editor.dll</HintPath>
+ <HintPath>C:/Users/oior2/Documents/Delivery Truck/Assets/Fantasy-Colorable/ThirdParty/NGUI/DLLs/Editor/NGUI_Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
@@ -246,9 +246,9 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass-vs.csproj">
-      <Project>{E3C54D08-789B-0F04-20E7-A3B931D62F19}</Project>      <Name>Assembly-CSharp-firstpass-vs</Name>    </ProjectReference>
+      <Project>{97935350-D9EB-3D5D-86E2-9DD53AE24B64}</Project>      <Name>Assembly-CSharp-firstpass-vs</Name>    </ProjectReference>
     <ProjectReference Include="Assembly-CSharp-vs.csproj">
-      <Project>{E7765267-1B05-724E-E4EE-ABBCC2CC69F9}</Project>      <Name>Assembly-CSharp-vs</Name>    </ProjectReference>
+      <Project>{9D06E4CA-A7F0-76B6-57E2-4D7EACB54758}</Project>      <Name>Assembly-CSharp-vs</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
