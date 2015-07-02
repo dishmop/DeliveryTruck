@@ -25,17 +25,12 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		timer += Time.deltaTime;
+
 		animateWheels();
+
 		if (Input.GetKey (KeyCode.Space) && fuelTime >= 0 && timer > (fuelTime/timeBlocks) && !gameOver ) {
 			timer = 0f;
 		} 
-
-		if ( timer <(fuelTime / timeBlocks)) {
-			fuelTime -= Time.deltaTime;
-			slider.value = fuelTime;
-			accelerate (force);
-		}
 	}
 
 	void accelerate(float value){
@@ -44,6 +39,18 @@ public class PlayerController : MonoBehaviour {
 		StartCoroutine(arrowEffect());
 		animateWheels ();
 	}
+
+
+	void FixedUpdate(){
+		timer += Time.fixedDeltaTime;
+
+		if ( timer <(fuelTime / timeBlocks)) {
+			fuelTime -= Time.fixedDeltaTime;
+			slider.value = fuelTime;
+			accelerate (force);
+		}
+	}
+
 
 	void animateWheels(){
 		GameObject[] wheels = GameObject.FindGameObjectsWithTag ("Wheels");
