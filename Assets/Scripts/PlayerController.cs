@@ -4,14 +4,14 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
-	public float timeBlocks = 5f;
+	//public float timeBlocks = 5f;
 	public float force = 10f;
 	public float fuelTime = 10.0f;
 	public float initialSpeed = 0.5f;
 	public Slider slider;
 	public bool gameOver;
 	private Rigidbody2D objRigidbody;
-	float timer;
+//	float timer;
 	GameObject arrow;
 	// Use this for initialization
 	void Start () {
@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour {
 		slider.maxValue = fuelTime;
 		arrow = GameObject.FindGameObjectWithTag ("ForwardArrow");
 		arrow.SetActive (false);
-		timer = (fuelTime / timeBlocks);
+//		timer = (fuelTime / timeBlocks);
 	}
 	
 	// Update is called once per frame
@@ -28,9 +28,9 @@ public class PlayerController : MonoBehaviour {
 
 		animateWheels();
 
-		if (Input.GetKey (KeyCode.Space) && fuelTime >= 0 && timer > (fuelTime/timeBlocks) && !gameOver ) {
-			timer = 0f;
-		} 
+//		if (Input.GetKey (KeyCode.Space) && fuelTime >= 0 && timer > (fuelTime/timeBlocks) && !gameOver ) {
+//			timer = 0f;
+//		} 
 	}
 
 	void accelerate(float value){
@@ -42,9 +42,9 @@ public class PlayerController : MonoBehaviour {
 
 
 	void FixedUpdate(){
-		timer += Time.fixedDeltaTime;
+//		timer += Time.fixedDeltaTime;
 
-		if ( timer <(fuelTime / timeBlocks)) {
+		if (Input.GetKey (KeyCode.Space) && fuelTime >= 0 && !gameOver /* timer <(fuelTime / timeBlocks) */) {
 			fuelTime -= Time.fixedDeltaTime;
 			slider.value = fuelTime;
 			accelerate (force);

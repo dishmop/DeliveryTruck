@@ -124,6 +124,7 @@
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\PlotManager.cs" />
      <Compile Include="Assets\Scripts\Plotting.cs" />
+     <Compile Include="Assets\Scripts\SpeedBoost.cs" />
      <Compile Include="Assets\Scripts\UIGraph.cs" />
      <None Include="Assets\Fantasy-Colorable\ThirdParty\NGUI\Resources\Shaders\Depth.shader" />
      <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
