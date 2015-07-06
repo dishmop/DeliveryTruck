@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{9D06E4CA-A7F0-76B6-57E2-4D7EACB54758}</ProjectGuid>
+	<ProjectGuid>{E7765267-1B05-724E-E4EE-ABBCC2CC69F9}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -119,12 +119,15 @@
      <Compile Include="Assets\Scripts\AirResistanceEffect.cs" />
      <Compile Include="Assets\Scripts\BackgroundMovement.cs" />
      <Compile Include="Assets\Scripts\CameraFollow.cs" />
+     <Compile Include="Assets\Scripts\CanvasController.cs" />
      <Compile Include="Assets\Scripts\FinishRace.cs" />
      <Compile Include="Assets\Scripts\FrictionEffect.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\PlotManager.cs" />
      <Compile Include="Assets\Scripts\Plotting.cs" />
+     <Compile Include="Assets\Scripts\SceneOverview.cs" />
      <Compile Include="Assets\Scripts\SpeedBoost.cs" />
+     <Compile Include="Assets\Scripts\TimerCountdown.cs" />
      <Compile Include="Assets\Scripts\UIGraph.cs" />
      <None Include="Assets\Fantasy-Colorable\ThirdParty\NGUI\Resources\Shaders\Depth.shader" />
      <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
@@ -244,7 +247,7 @@
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="NGUI">
- <HintPath>C:/Users/oior2/Documents/Delivery Truck/Assets/Fantasy-Colorable/ThirdParty/NGUI/DLLs/NGUI.dll</HintPath>
+ <HintPath>C:/Users/Osman/Documents/DeliveryTruck/Assets/Fantasy-Colorable/ThirdParty/NGUI/DLLs/NGUI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
@@ -252,7 +255,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{97935350-D9EB-3D5D-86E2-9DD53AE24B64}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+      <Project>{E3C54D08-789B-0F04-20E7-A3B931D62F19}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

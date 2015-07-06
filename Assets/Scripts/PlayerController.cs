@@ -10,15 +10,16 @@ public class PlayerController : MonoBehaviour {
 	public float initialSpeed = 0.5f;
 	public Slider slider;
 	public bool gameOver;
+	public GameObject arrow;
 	private Rigidbody2D objRigidbody;
 //	float timer;
-	GameObject arrow;
+	//GameObject arrow;
 	// Use this for initialization
 	void Start () {
 		objRigidbody = GetComponent<Rigidbody2D> ();
 		objRigidbody.velocity = new Vector2 (initialSpeed, 0f);
 		slider.maxValue = fuelTime;
-		arrow = GameObject.FindGameObjectWithTag ("ForwardArrow");
+		//arrow = GameObject.FindGameObjectWithTag ("ForwardArrow");
 		arrow.SetActive (false);
 //		timer = (fuelTime / timeBlocks);
 	}
@@ -36,7 +37,7 @@ public class PlayerController : MonoBehaviour {
 	void accelerate(float value){
 		objRigidbody.AddForce (new Vector2 (value, 0f));
 		GameObject[] wheels = GameObject.FindGameObjectsWithTag ("Wheels");
-		StartCoroutine(arrowEffect());
+		//StartCoroutine(arrowEffect());
 		animateWheels ();
 	}
 
@@ -47,7 +48,10 @@ public class PlayerController : MonoBehaviour {
 		if (Input.GetKey (KeyCode.Space) && fuelTime >= 0 && !gameOver /* timer <(fuelTime / timeBlocks) */) {
 			fuelTime -= Time.fixedDeltaTime;
 			slider.value = fuelTime;
+			arrow.SetActive (true);
 			accelerate (force);
+		} else {
+			arrow.SetActive (false);
 		}
 	}
 

@@ -14,6 +14,8 @@ public class FinishRace : MonoBehaviour {
 	void Start () {
 		anim2 = minutes.GetComponent<Animator> ();
 		anim1 = seconds.GetComponent<Animator> ();
+		anim1.enabled = true;
+		anim2.enabled = true;
 		//anim2.speed = 0f;
 		//anim1.speed = 0f;
 

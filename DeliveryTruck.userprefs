@@ -1,16 +1,18 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\FinishRace.cs">
     <Files>
       <File FileName="Assets\Scripts\BackgroundMovement.cs" Line="20" Column="109" />
       <File FileName="Assets\Standard Assets\2D\Scripts\Camera2DFollow.cs" Line="1" Column="1" />
       <File FileName="Assets\Standard Assets\2D\Scripts\Platformer2DUserControl.cs" Line="1" Column="1" />
       <File FileName="Assets\Standard Assets\2D\Scripts\PlatformerCharacter2D.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PlayerController.cs" Line="52" Column="6" />
-      <File FileName="Assets\Scripts\Plotting.cs" Line="31" Column="48" />
-      <File FileName="Assets\Plotter\Test\TestPlotter.cs" Line="21" Column="3" />
-      <File FileName="Assets\Scripts\PlotManager.cs" Line="299" Column="1" />
-      <File FileName="Assets\Scripts\FinishRace.cs" Line="44" Column="61" />
+      <File FileName="Assets\Scripts\PlayerController.cs" Line="77" Column="3" />
+      <File FileName="Assets\Scripts\Plotting.cs" Line="24" Column="13" />
+      <File FileName="Assets\Plotter\Test\TestPlotter.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PlotManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\FinishRace.cs" Line="7" Column="28" />
+      <File FileName="Assets\Scripts\AirResistanceEffect.cs" Line="33" Column="34" />
+      <File FileName="Assets\Scripts\CanvasController.cs" Line="52" Column="60" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
