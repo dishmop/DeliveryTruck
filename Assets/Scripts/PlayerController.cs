@@ -5,6 +5,12 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
 
 	//public float timeBlocks = 5f;
+	public AudioClip acceleratingSound;
+	public AudioClip brakingSound;
+	public AudioClip movingSound;
+	public float volumeFactor = 0.4f;
+	public float pitchFactor = 0.4f;
+	public AudioSource camereaAudioSource;
 	public float force = 10f;
 	public float fuelTime = 10.0f;
 	public float initialSpeed = 0.5f;
@@ -12,6 +18,7 @@ public class PlayerController : MonoBehaviour {
 	public bool gameOver;
 	public GameObject arrow;
 	private Rigidbody2D objRigidbody;
+	private AudioSource playerAudioSource;
 //	float timer;
 	//GameObject arrow;
 	// Use this for initialization
@@ -21,6 +28,7 @@ public class PlayerController : MonoBehaviour {
 		slider.maxValue = fuelTime;
 		//arrow = GameObject.FindGameObjectWithTag ("ForwardArrow");
 		arrow.SetActive (false);
+		playerAudioSource = GetComponent<AudioSource> ();
 //		timer = (fuelTime / timeBlocks);
 	}
 	
@@ -37,6 +45,7 @@ public class PlayerController : MonoBehaviour {
 	void accelerate(float value){
 		objRigidbody.AddForce (new Vector2 (value, 0f));
 		GameObject[] wheels = GameObject.FindGameObjectsWithTag ("Wheels");
+		camereaAudioSource.PlayOneShot (acceleratingSound);
 		//StartCoroutine(arrowEffect());
 		animateWheels ();
 	}
@@ -57,6 +66,9 @@ public class PlayerController : MonoBehaviour {
 
 
 	void animateWheels(){
+		playerAudioSource.volume = 0.109f + objRigidbody.velocity.x * volumeFactor;
+		playerAudioSource.PlayOneShot (movingSound);
+		//playerAudioSource.pitch = objRigidbody.velocity.x * pitchFactor;
 		GameObject[] wheels = GameObject.FindGameObjectsWithTag ("Wheels");
 		for(int i = 0; i<wheels.Length; i++){
 			Animator anim = wheels[i].GetComponent<Animator>();

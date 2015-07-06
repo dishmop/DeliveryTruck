@@ -3,6 +3,10 @@ using System.Collections;
 
 public class FinishRace : MonoBehaviour {
 
+
+	public AudioClip gameOverSound;
+	public AudioClip winingSound;
+	public AudioClip brakingSound;
 	public int timer = 12;
 	public GameObject minutes;
 	public GameObject seconds;
@@ -10,12 +14,15 @@ public class FinishRace : MonoBehaviour {
 	//bool crossTheFinishLine;
 	Animator anim1;
 	Animator anim2;
+	AudioSource soundPlayer;
 	// Use this for initialization
 	void Start () {
+		soundPlayer = GetComponent<AudioSource> ();
 		anim2 = minutes.GetComponent<Animator> ();
 		anim1 = seconds.GetComponent<Animator> ();
 		anim1.enabled = true;
 		anim2.enabled = true;
+
 		//anim2.speed = 0f;
 		//anim1.speed = 0f;
 
@@ -33,7 +40,10 @@ public class FinishRace : MonoBehaviour {
 			stop(coll.gameObject);
 			anim1.enabled = false;
 			anim2.enabled = false;
+			soundPlayer.PlayOneShot(winingSound);
+	
 		}
+
 	}
 
 	void stop(GameObject obj){
@@ -41,6 +51,7 @@ public class FinishRace : MonoBehaviour {
 		PlayerController playerController = obj.GetComponent<PlayerController> ();
 		playerController.gameOver = true;
 		ObjRigidbody.drag = slowingRate;
+		soundPlayer.PlayOneShot(brakingSound);
 
 
 	}
@@ -55,9 +66,11 @@ public class FinishRace : MonoBehaviour {
 		}
 		GameObject player = GameObject.FindGameObjectWithTag ("Player");
 		stop (player);
+		soundPlayer.PlayOneShot(gameOverSound);
 		anim1.enabled = false;
 		anim2.enabled = false;
 
 	}
 
+	
 }

@@ -7,7 +7,7 @@ public class CanvasController : MonoBehaviour {
 	public GameObject additionBackground;
 	public GameObject cameraObj;
 	public GameObject player;
-	public GameObject plotter;
+	//public GameObject plotter;
 	public GameObject finishLine;
 	public GameObject graphPanel;
 	public GameObject instructionsPanel;
@@ -40,7 +40,7 @@ public class CanvasController : MonoBehaviour {
 		//panel = GetComponent<Image> ();
 		cameraFollow = cameraObj.GetComponent<UnityStandardAssets._2D.CameraFollow> ();
 		playerController = player.GetComponent<PlayerController> ();
-		plotting = plotter.GetComponent<Plotting> ();
+		plotting = cameraObj.GetComponent<Plotting> ();
 		finishRace = finishLine.GetComponent<FinishRace> ();
 		cameraFollow.enabled = false;
 		playerController.enabled = false;
@@ -150,7 +150,7 @@ public class CanvasController : MonoBehaviour {
 		gameObject.GetComponent<TimerCountdown>().enabled = false;
 		startRace.text = "Go!";
 		startedRace = true;
-		cameraFollow.enabled = true;
+		//cameraFollow.enabled = true;
 		playerController.enabled = true;
 		plotting.enabled = true;
 		finishRace.enabled = true;

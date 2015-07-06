@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 96a576df7dcb81641bc810c3c0f7c2d5
-timeCreated: 1435584872
+timeCreated: 1436184725
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -65,7 +65,7 @@ TextureImporter:
         width: 118
         height: 39
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: SceneSprites_1
       rect:
@@ -75,17 +75,17 @@ TextureImporter:
         width: 62
         height: 62
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: SceneSprites_2
       rect:
         serializedVersion: 2
-        x: 532
+        x: 535
         y: 152
-        width: 301
+        width: 298
         height: 301
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: SceneSprites_3
       rect:
@@ -95,7 +95,7 @@ TextureImporter:
         width: 29
         height: 194
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: SceneSprites_4
       rect:
@@ -105,7 +105,7 @@ TextureImporter:
         width: 365
         height: 246
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: SceneSprites_5
       rect:
@@ -115,7 +115,7 @@ TextureImporter:
         width: 288
         height: 129
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: SceneSprites_6
       rect:
@@ -125,7 +125,7 @@ TextureImporter:
         width: 61
         height: 35
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: SceneSprites_7
       rect:
@@ -135,7 +135,7 @@ TextureImporter:
         width: 367
         height: 127
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

@@ -55,4 +55,8 @@ public class Plotting : MonoBehaviour {
 		data.SetValue( new Vector2 (xPoint, yPoint), count);
 		graph.UploadData (data);
 	}
+
+	public Vector2[] getData(){
+		return data;
+	}
 }
