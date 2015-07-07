@@ -176,5 +176,17 @@ public class CanvasController2 : MonoBehaviour {
 
 	}
 
+	// To used by all levels to skip the instructions
+	//------------------------------------------------------
+	
+	public void skipInstructions(){
+		showingFriction = false;
+		cameraObj.transform.position = startingPosition;
+		Destroy (instructionsPanel);
+		gameObject.GetComponent<TimerCountdown2> ().enabled = true;
+	}
+	
+	//------------------------------------------------------
+
 
 }

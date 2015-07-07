@@ -29,8 +29,16 @@ public class AirResistanceEffect : MonoBehaviour {
 	}
 	
 	void addDragForce(Rigidbody2D body){
-		Debug.Log("Air resistance " + ( -dragCoefficient * body.velocity.x ));
-		body.AddForce (-dragCoefficient * body.velocity);
-		
+		if (body.velocity.x > 0) {
+
+			if(!arrow.activeInHierarchy){
+				arrow.SetActive (true);
+			}
+
+			Debug.Log ("Air resistance " + (-dragCoefficient * body.velocity.x));
+			body.AddForce (-dragCoefficient * body.velocity);
+		} else {
+			arrow.SetActive (false);
+		}
 	}
 }

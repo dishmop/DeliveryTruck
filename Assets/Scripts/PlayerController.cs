@@ -17,19 +17,34 @@ public class PlayerController : MonoBehaviour {
 	public Slider slider;
 	public bool gameOver;
 	public GameObject arrow;
+
+
+
 	private Rigidbody2D objRigidbody;
 	private AudioSource playerAudioSource;
-//	float timer;
-	//GameObject arrow;
+	private float maximumSpeed;
+	private float initialVolume;
+	private float initialPitch;
+
+
+
 	// Use this for initialization
 	void Start () {
 		objRigidbody = GetComponent<Rigidbody2D> ();
 		objRigidbody.velocity = new Vector2 (initialSpeed, 0f);
+
 		slider.maxValue = fuelTime;
-		//arrow = GameObject.FindGameObjectWithTag ("ForwardArrow");
+		slider.value = fuelTime;
+
 		arrow.SetActive (false);
+
 		playerAudioSource = GetComponent<AudioSource> ();
-//		timer = (fuelTime / timeBlocks);
+		initialVolume = playerAudioSource.volume;
+		initialPitch = playerAudioSource.pitch;
+
+		maximumSpeed = (force * fuelTime) + initialSpeed;
+
+		//timer = (fuelTime / timeBlocks);
 	}
 	
 	// Update is called once per frame
@@ -46,13 +61,12 @@ public class PlayerController : MonoBehaviour {
 		objRigidbody.AddForce (new Vector2 (value, 0f));
 		GameObject[] wheels = GameObject.FindGameObjectsWithTag ("Wheels");
 		camereaAudioSource.PlayOneShot (acceleratingSound);
-		//StartCoroutine(arrowEffect());
 		animateWheels ();
 	}
 
 
 	void FixedUpdate(){
-//		timer += Time.fixedDeltaTime;
+
 
 		if (Input.GetKey (KeyCode.Space) && fuelTime >= 0 && !gameOver /* timer <(fuelTime / timeBlocks) */) {
 			fuelTime -= Time.fixedDeltaTime;
@@ -66,13 +80,21 @@ public class PlayerController : MonoBehaviour {
 
 
 	void animateWheels(){
-		playerAudioSource.volume = 0.109f + objRigidbody.velocity.x * volumeFactor;
-		playerAudioSource.PlayOneShot (movingSound);
-		//playerAudioSource.pitch = objRigidbody.velocity.x * pitchFactor;
+		if (objRigidbody.velocity.x > 0) {
+		
+			playerAudioSource.volume = initialVolume + objRigidbody.velocity.x * volumeFactor;
+			playerAudioSource.pitch = initialPitch + objRigidbody.velocity.x * pitchFactor;
+			playerAudioSource.PlayOneShot (movingSound);
+
+		} else {
+			playerAudioSource.Stop();
+		}
+
+
 		GameObject[] wheels = GameObject.FindGameObjectsWithTag ("Wheels");
 		for(int i = 0; i<wheels.Length; i++){
 			Animator anim = wheels[i].GetComponent<Animator>();
-			if(!gameOver){
+			if(!gameOver && objRigidbody.velocity.x > 0){
 				anim.enabled = true;
 				anim.SetFloat("Speed",(objRigidbody.velocity.x / 1.595f));
 				Debug.Log((objRigidbody.velocity.x));                             //debuging...

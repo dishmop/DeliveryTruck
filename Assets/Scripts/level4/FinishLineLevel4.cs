@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
-public class FinishRace : MonoBehaviour {
-
+public class FinishLineLevel4 : MonoBehaviour {
+	
 	public GameObject nextRestartButton;
 	public Text NRbuttonText;
 	public GameObject gameOverPanel;
@@ -15,47 +16,57 @@ public class FinishRace : MonoBehaviour {
 	public GameObject minutes;
 	public GameObject seconds;
 	public float slowingRate = 5f;
+	public float winningSpeed = 3.813607f;
+	public float allowedError = 0.15f;
 
 	Animator anim1;
 	Animator anim2;
 	AudioSource soundPlayer;
 	bool hasWon;
-
-	void Awake(){
-		gameOverPanel.SetActive (false);
-	}
-
+	bool overSpeeding;
+	float finialSpeed;
+	
 	// Use this for initialization
 	void Start () {
 		soundPlayer = GetComponent<AudioSource> ();
-
+		
 		anim2 = minutes.GetComponent<Animator> ();
 		anim1 = seconds.GetComponent<Animator> ();
 		anim1.enabled = true;
 		anim2.enabled = true;
-
-
-
+		
+		gameOverPanel.SetActive (false);
+		
 		StartCoroutine (setTimerCountdown());
 	}
 	
-
-
+	// Update is called once per frame
+	void Update () {
+		
+	}
+	
 	void OnTriggerEnter2D(Collider2D coll){
 		if (coll.gameObject.tag == "Player") {
+
+			Rigidbody2D ObjRigidbody = coll.GetComponent<Rigidbody2D> ();
+			finialSpeed = ObjRigidbody.velocity.x;
 
 			StartCoroutine(stop(coll.gameObject));
 			anim1.enabled = false;
 			anim2.enabled = false;
 
-			soundPlayer.PlayOneShot(winingSound);
+			if(Mathf.Abs(finialSpeed - winningSpeed) <= allowedError){
 
-			hasWon = true;
-	
+				soundPlayer.PlayOneShot(winingSound);
+				
+				hasWon = true;
+
+			}else{
+				overSpeeding = true;
+			}
 		}
-
 	}
-
+	
 	IEnumerator stop(GameObject obj){
 		Rigidbody2D ObjRigidbody = obj.GetComponent<Rigidbody2D> ();
 		PlayerController playerController = obj.GetComponent<PlayerController> ();
@@ -68,27 +79,35 @@ public class FinishRace : MonoBehaviour {
 		}
 
 		yield return new WaitForSeconds (1f);
+		//Debug.Log ("Before activating the panel.");
 		gameOverPanel.SetActive (true);
+		//Debug.Log ("After activating the panel.");
 		if (hasWon) {
 			gameOverText.color = Color.blue;
 			gameOverText.text = "Congratulations!\nYou have completed the level successfully.";
 			NRbuttonText.text = "Next Level";
 		} else {
 			gameOverText.color = new Color((73f/255f), (21f/255f), (37f/255f));
-			gameOverText.text = "You ran out of time :(\n" +
-				"Try again";
+			if(overSpeeding){
+				gameOverText.text = "Your are moving too fast :(\n" +
+					"Try again.";
+			}else{
+				gameOverText.text = "You ran out of time :(\n" +
+					"Try again.";
+			}
+
 			NRbuttonText.text = "Restart";
 		}
-
-
 	}
+
+
 	IEnumerator setTimerCountdown(){
 		for (int i = timer-1; i >= 0; i--) {
-
+			
 			if(hasWon){
 				break;
 			}
-
+			
 			//Debug.Log("Animation1 is at " +((i % 10)/10f) );
 			anim1.Play("font_number_sprite_",0,((i % 10)/10f)) ;
 			anim1.speed = 0f;
@@ -104,19 +123,19 @@ public class FinishRace : MonoBehaviour {
 			yield return new WaitForSeconds (2f);
 			soundPlayer.PlayOneShot(gameOverSound);
 		}
-
+		
 	}
-
-
+	
+	
 	public void gameOver(){
 		if (hasWon) {
 			Application.LoadLevel(Application.loadedLevel + 1);
 		} else {
 			Application.LoadLevel(Application.loadedLevel);
 		}
-
+		
 		
 	}
-
+	
 	
 }

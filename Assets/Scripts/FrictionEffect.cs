@@ -33,8 +33,15 @@ public class FrictionEffect : MonoBehaviour {
 	}
 
 	void addFricition(Rigidbody2D body){
-		Debug.Log("About to give a force " + (-frictionCoefficient * body.mass * Mathf.Abs(Physics2D.gravity.y)) );
-		body.AddForce (-frictionCoefficient * body.mass * Mathf.Abs(Physics2D.gravity.y) * body.velocity.normalized);
 
+		if(!arrow.activeInHierarchy){
+			arrow.SetActive (true);
+		}
+		if (body.velocity.x > 0) {
+			Debug.Log("About to give a force " + (-frictionCoefficient * body.mass * Mathf.Abs(Physics2D.gravity.y)) );
+			body.AddForce (-frictionCoefficient * body.mass * Mathf.Abs(Physics2D.gravity.y) * body.velocity.normalized);
+		}else {
+			arrow.SetActive (false);
+		}
 	}
 }

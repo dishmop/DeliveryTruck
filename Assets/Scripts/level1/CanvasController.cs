@@ -146,6 +146,7 @@ public class CanvasController : MonoBehaviour {
 		reviewingScene = true;
 	}
 	public void startLevel(){
+		animatingSlider = false;
 		Destroy (additionBackground);
 		gameObject.GetComponent<TimerCountdown>().enabled = false;
 		startRace.text = "Go!";
@@ -157,5 +158,14 @@ public class CanvasController : MonoBehaviour {
 
 	}
 
+	// To used by all levels to skip the instructions
+	//------------------------------------------------------
+
+	public void skipInstructions(){
+		Destroy (instructionsPanel);
+		gameObject.GetComponent<TimerCountdown> ().enabled = true;
+	}
+
+	//------------------------------------------------------
 
 }
