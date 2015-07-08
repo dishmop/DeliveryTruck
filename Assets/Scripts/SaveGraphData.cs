@@ -34,6 +34,7 @@ public class SaveGraphData : MonoBehaviour {
 			GraphData graphData = (GraphData) bf.Deserialize (file);
 
 			UIGraph graph = graphPanel.GetComponent<UIGraph> ();
+			graph.setRed(true);
 			graph.SetAxesRanges (0f,100f,0f,4f);
 			graph.UploadData (graphData.getData());
 		} 

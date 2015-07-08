@@ -6,7 +6,8 @@ using System.Collections;
 public class CanvasController4 : MonoBehaviour {
 
 	public SaveGraphData loadGraphData;
-	public GameObject additionBackground;
+	public GameObject overallSceneView;
+	//public GameObject additionBackground;
 	public GameObject cameraObj;
 	public GameObject player;
 	public float mouseSensitivity = 1f;
@@ -36,7 +37,7 @@ public class CanvasController4 : MonoBehaviour {
 	bool navigate;
 	bool startedRace;
 	bool movingBack;
-	
+	bool showedGraph;
 	void Awake(){
 		//panel = GetComponent<Image> ();
 		cameraFollow = cameraObj.GetComponent<UnityStandardAssets._2D.CameraFollow> ();
@@ -113,7 +114,11 @@ public class CanvasController4 : MonoBehaviour {
 	}
 	
 	void showGraph(){
-		loadGraphData.load ();
+		if (!showedGraph) {
+			loadGraphData.load ();
+			showedGraph = true;
+		}
+
 	}
 	
 	void navigateScene(){
@@ -145,7 +150,7 @@ public class CanvasController4 : MonoBehaviour {
 		
 	}
 	public void startLevel(){
-		Destroy (additionBackground);
+		//Destroy (additionBackground);
 		gameObject.GetComponent<TimerCountdown4>().enabled = false;
 		startRace.text = "Go!";
 		startedRace = true;
@@ -159,10 +164,12 @@ public class CanvasController4 : MonoBehaviour {
 	//------------------------------------------------------
 	
 	public void skipInstructions(){
+		showGraph ();
 		navigate = false;
 		reviewingScene = false;
 		cameraObj.transform.position = startingPosition;
 		Destroy (instructionsPanel);
+		overallSceneView.SetActive (true);
 		gameObject.GetComponent<TimerCountdown4> ().enabled = true;
 	}
 	

@@ -67,7 +67,7 @@ public class CanvasController : MonoBehaviour {
 
 		if (animatingSlider) {
 			timer += Time.deltaTime;
-			animateSlider(timer/3f);
+			animateSlider(timer/4f);
 
 		}
 		if (reviewingScene) {
@@ -108,7 +108,7 @@ public class CanvasController : MonoBehaviour {
 			break;
 		case 3:
 			instructionText.text = "Press 'Space' to apply a constant force, i.e accelerate. " +
-				"Be careful you have a limited amount of fuel.";
+				"Be careful you have a limited amount of fuel, the screen will flash red when you are run out of fuel.";
 			animatingSlider = true;
 			break;
 		case 4:
@@ -136,9 +136,13 @@ public class CanvasController : MonoBehaviour {
 		graph.UploadData (data);
 	}
 	void animateSlider(float weight){
+		slider.gameObject.GetComponent<Animator> ().enabled = true;
 		slider.maxValue = 10f;
 		slider.minValue = 0f;
 		slider.value = Mathf.Lerp (10f, 5f, weight);
+		if (timer >= 4f) {
+			slider.gameObject.GetComponent<Animator> ().enabled = false;
+		}
 	}
 
 	void reviewScene(){

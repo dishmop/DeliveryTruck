@@ -51,6 +51,7 @@ public class Plotting : MonoBehaviour {
 
 	void plotPoint(float xPoint, float yPoint){
 		UIGraph graph = graphObj.GetComponent<UIGraph> ();
+		graph.setRed (false);
 		graph.SetAxesRanges (xAxisMin,xAxisMax,yAxisMin,yAxisMax);
 		data.SetValue( new Vector2 (xPoint, yPoint), count);
 		graph.UploadData (data);

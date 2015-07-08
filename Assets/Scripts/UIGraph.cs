@@ -16,7 +16,7 @@ public class UIGraph : MonoBehaviour {
 	float xAxisMax = 50;
 	float yAxisMin = -2;
 	float yAxisMax = 2;
-	
+	bool isRed;
 	//float vCursorSizeProp = 0.2f;
 	
 	Vector2[] data;
@@ -133,7 +133,7 @@ public class UIGraph : MonoBehaviour {
 				if (data[i].y * data[i+1].y > 0){
 					Vector3 thisPos = TransformGraphToWorld(data[i]);
 					Vector3 nextPos = TransformGraphToWorld(data[i+1]);
-					Debug.DrawLine(thisPos, nextPos, (data[i].y > 0) ? dataPositiveCol : dataNegativeCol);
+					Debug.DrawLine(thisPos, nextPos, (data[i].y > 0 && !isRed) ? dataPositiveCol : dataNegativeCol);
 				}
 				else{
 					// find crossing point
@@ -174,5 +174,9 @@ public class UIGraph : MonoBehaviour {
 		
 		return new Vector3(borderCorners[0].x + unitScalePos.x * worldXRange, borderCorners[0].y + unitScalePos.y * worldYRange, 0);
 		
+	}
+
+	public void setRed(bool colorRed){
+		isRed = colorRed;
 	}
 }
