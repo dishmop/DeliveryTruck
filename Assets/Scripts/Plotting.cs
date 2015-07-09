@@ -54,7 +54,7 @@ public class Plotting : MonoBehaviour {
 		graph.setRed (false);
 		graph.SetAxesRanges (xAxisMin,xAxisMax,yAxisMin,yAxisMax);
 		data.SetValue( new Vector2 (xPoint, yPoint), count);
-		graph.UploadData (data);
+		graph.UploadData (data, (int)count);
 	}
 
 	public Vector2[] getData(){

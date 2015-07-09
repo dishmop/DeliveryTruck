@@ -25,11 +25,9 @@ public class PlayerController : MonoBehaviour {
 
 	private Rigidbody2D objRigidbody;
 	private AudioSource playerAudioSource;
-	private float maximumSpeed;
 	private float initialVolume;
 	private float initialPitch;
 	private bool outOfFuel;
-
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 	// Use this for initialization
@@ -46,7 +44,6 @@ public class PlayerController : MonoBehaviour {
 		initialVolume = playerAudioSource.volume;
 		initialPitch = playerAudioSource.pitch;
 
-		maximumSpeed = (force * fuelTime) + initialSpeed;
 
 		//timer = (fuelTime / timeBlocks);
 	}
@@ -78,7 +75,6 @@ public class PlayerController : MonoBehaviour {
 
 	void accelerate(float value){
 		objRigidbody.AddForce (new Vector2 (value, 0f));
-		GameObject[] wheels = GameObject.FindGameObjectsWithTag ("Wheels");
 		camereaAudioSource.PlayOneShot (acceleratingSound);
 		animateWheels ();
 	}
@@ -121,7 +117,7 @@ public class PlayerController : MonoBehaviour {
 			if(!gameOver && objRigidbody.velocity.x > 0){
 				anim.enabled = true;
 				anim.SetFloat("Speed",(objRigidbody.velocity.x / 1.595f));
-				Debug.Log((objRigidbody.velocity.x));                             //debuging...
+				//Debug.Log((objRigidbody.velocity.x));                             //debuging...
 			}else{
 				anim.enabled = false;
 			}
@@ -134,4 +130,11 @@ public class PlayerController : MonoBehaviour {
 			yield return new WaitForSeconds(1f);
 		arrow.SetActive (false);
 	}
+	//-------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
 }
+
+	

@@ -25,11 +25,16 @@ public class FinishLineLevel4 : MonoBehaviour {
 	AudioSource soundPlayer;
 	bool hasWon;
 	bool overSpeeding;
+	bool isInside;
 	float finialSpeed;
 	float dragForce;
+	Rigidbody2D ObjRigidbody;
 
 	// Use this for initialization
 	void Start () {
+
+		ObjRigidbody = GameObject.FindGameObjectWithTag ("Player").GetComponent<Rigidbody2D> ();
+
 		soundPlayer = GetComponent<AudioSource> ();
 
 		dragForce = Mathf.Pow ((winningSpeed + allowedError), 2f) / (2 * stoppingDistance);
@@ -45,57 +50,43 @@ public class FinishLineLevel4 : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
+		if (isInside) {
+			StopCoroutine(setTimerCountdown());
+			if(ObjRigidbody.velocity.x >0){
+				Vector2 velocity = ObjRigidbody.velocity;
+				velocity.x -= dragForce*Time.fixedDeltaTime;
+				ObjRigidbody.velocity = velocity;
+			}else{
+				StartCoroutine(stop(GameObject.FindGameObjectWithTag ("Player")));
+				if(!hasWon){
+					soundPlayer.PlayOneShot(winingSound);
+				}
+
+				hasWon = true;
+				gameObject.GetComponent<BoxCollider2D>().enabled = false;
+			}
+		}
 		
 	}
 	
 	void OnTriggerEnter2D(Collider2D coll){
 		if (coll.gameObject.tag == "Player") {
-
+			GameObject.FindGameObjectWithTag("Body").GetComponent<BoxCollider2D>().enabled = true;
+			isInside = true;
 			StopCoroutine(setTimerCountdown());
-//			Rigidbody2D ObjRigidbody = coll.GetComponent<Rigidbody2D> ();
-//			finialSpeed = ObjRigidbody.velocity.x;
-//
-//			StartCoroutine(stop(coll.gameObject));
-//			anim1.enabled = false;
-//			anim2.enabled = false;
-//
-//			if(Mathf.Abs(finialSpeed - winningSpeed) <= allowedError){
-//
-//				soundPlayer.PlayOneShot(winingSound);
-//				
-//				hasWon = true;
-//
-//			}else{
-//				overSpeeding = true;
-//			}
+
 		}
 	}
-
-	void OnTriggerStay2D(Collider2D coll){
-		if (coll.gameObject.tag == "Player") {
-			StopCoroutine(setTimerCountdown());
-			Rigidbody2D ObjRigidbody = coll.GetComponent<Rigidbody2D> ();
-			if(ObjRigidbody.velocity.x >0){
-				Vector2 velocity = ObjRigidbody.velocity;
-				velocity.x -= dragForce*Time.deltaTime;
-				ObjRigidbody.velocity = velocity;
-			}else{
-				StartCoroutine(stop(coll.gameObject));
-				soundPlayer.PlayOneShot(winingSound);
-				hasWon = true;
-				gameObject.GetComponent<BoxCollider2D>().enabled = false;
-			}
-		}
-	}
+	
 	void OnTriggerExit2D(Collider2D coll){
 		if (coll.tag == "Body") {
 			Debug.Log ("OverSpeeeeeeeeding.");
+			isInside = false;
 			overSpeeding = true;
-			StartCoroutine(stop(GameObject.FindGameObjectWithTag("Player")));
-			gameObject.GetComponent<BoxCollider2D>().enabled = false;
-		}
-
+			StartCoroutine (stop (GameObject.FindGameObjectWithTag ("Player")));
+			gameObject.GetComponent<BoxCollider2D> ().enabled = false;
+		} 
 
 	}
 	
@@ -155,7 +146,10 @@ public class FinishLineLevel4 : MonoBehaviour {
 			GameObject player = GameObject.FindGameObjectWithTag ("Player");
 			StartCoroutine(stop(player));
 			yield return new WaitForSeconds (1f);
-			soundPlayer.PlayOneShot(gameOverSound);
+			if(!hasWon){
+				soundPlayer.PlayOneShot(gameOverSound);
+			}
+
 		}
 		
 	}

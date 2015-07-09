@@ -102,7 +102,10 @@ public class FinishRace : MonoBehaviour {
 			anim1.enabled = false;
 			anim2.enabled = false;
 			yield return new WaitForSeconds (2f);
-			soundPlayer.PlayOneShot(gameOverSound);
+			if(!hasWon){
+				soundPlayer.PlayOneShot(gameOverSound);
+			}
+
 		}
 
 	}

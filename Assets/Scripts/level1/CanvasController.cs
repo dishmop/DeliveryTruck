@@ -23,7 +23,6 @@ public class CanvasController : MonoBehaviour {
 	PlayerController playerController;
 	Plotting plotting;
 	FinishRace finishRace;
-	UnityStandardAssets._2D.CameraFollow cameraFollow;
 	int instruction;
 	//Image panel;
 	//bool animatingPanel;
@@ -38,11 +37,9 @@ public class CanvasController : MonoBehaviour {
 
 	void Awake(){
 		//panel = GetComponent<Image> ();
-		cameraFollow = cameraObj.GetComponent<UnityStandardAssets._2D.CameraFollow> ();
 		playerController = player.GetComponent<PlayerController> ();
 		plotting = cameraObj.GetComponent<Plotting> ();
 		finishRace = finishLine.GetComponent<FinishRace> ();
-		cameraFollow.enabled = false;
 		playerController.enabled = false;
 		plotting.enabled = false;
 		finishRace.enabled = false;

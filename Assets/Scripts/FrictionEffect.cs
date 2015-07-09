@@ -5,40 +5,49 @@ public class FrictionEffect : MonoBehaviour {
 
 	public GameObject arrow;
 	public float frictionCoefficient = 0.1f;
-	
+
+	bool isInside;
+	Rigidbody2D playerRigidbody;
+
 	// Use this for initialization
 	
 
 	void Start () {
 		arrow.SetActive (false);
+		playerRigidbody = GameObject.FindGameObjectWithTag ("Player").GetComponent<Rigidbody2D> ();
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	
+	void FixedUpdate () {
+		if (isInside) {
+			addFriction(playerRigidbody);
+		}
 	}
 
-	void OnTriggerEnter2D(Collider2D coll){
 
+	void OnTriggerEnter2D(Collider2D coll){
+		isInside = true;
 		arrow.SetActive (true);
 	}
 
-	void OnTriggerStay2D(Collider2D coll){
-		addFricition (coll.gameObject.GetComponent<Rigidbody2D> ());
-		
-	}
+//	void OnTriggerStay2D(Collider2D coll){
+//		addFriction (coll.gameObject.GetComponent<Rigidbody2D> ());
+//		
+//	}
+
+
 	void OnTriggerExit2D(Collider2D coll){
-		
+		isInside = false;
 		arrow.SetActive (false);
 	}
 
-	void addFricition(Rigidbody2D body){
+	void addFriction(Rigidbody2D body){
 
 		if(!arrow.activeInHierarchy){
 			arrow.SetActive (true);
 		}
 		if (body.velocity.x > 0) {
-			Debug.Log("About to give a force " + (-frictionCoefficient * body.mass * Mathf.Abs(Physics2D.gravity.y)) );
+			//Debug.Log("About to give a force " + (-frictionCoefficient * body.mass * Mathf.Abs(Physics2D.gravity.y)) );
 			body.AddForce (-frictionCoefficient * body.mass * Mathf.Abs(Physics2D.gravity.y) * body.velocity.normalized);
 		}else {
 			arrow.SetActive (false);

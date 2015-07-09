@@ -24,7 +24,6 @@ public class CanvasController5 : MonoBehaviour {
 	PlayerController playerController;
 	Plotting plotting;
 	FinishLineLevel4 finishRace;
-	UnityStandardAssets._2D.CameraFollow cameraFollow;
 	int instruction;
 	//Image panel;
 	//bool animatingPanel;
@@ -40,11 +39,9 @@ public class CanvasController5 : MonoBehaviour {
 	bool showedGraph;
 	void Awake(){
 		//panel = GetComponent<Image> ();
-		cameraFollow = cameraObj.GetComponent<UnityStandardAssets._2D.CameraFollow> ();
 		playerController = player.GetComponent<PlayerController> ();
 		plotting = cameraObj.GetComponent<Plotting> ();
 		finishRace = finishLine.GetComponent<FinishLineLevel4> ();
-		cameraFollow.enabled = false;
 		playerController.enabled = false;
 		plotting.enabled = false;
 		finishRace.enabled = false;
@@ -78,7 +75,7 @@ public class CanvasController5 : MonoBehaviour {
 	}
 	
 	public void playInstructions(){
-		Vector2[] data;
+
 		switch (instruction) {
 		case 0:
 			instructionText.text ="In this level you are required to reach the finish line with a certain velocity and before" +

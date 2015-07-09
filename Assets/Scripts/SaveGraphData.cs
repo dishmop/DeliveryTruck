@@ -58,8 +58,14 @@ class GraphData{
 	public Vector2[] getData(){
 		Vector2[] vData = new Vector2[data.Length / 2];
 		for (int i = 0; i<vData.Length; i++) {
-			vData[i].x = data[i,0];
-			vData[i].y = data[i,1];
+			if(i != 0 && data[i,0] == 0.0f){
+				vData[i].x = vData[i-1].x;
+				vData[i].y = vData[i-1].y;
+			}else{
+				vData[i].x = data[i,0];
+				vData[i].y = data[i,1];
+			}
+
 		}
 		return vData;
 	}
