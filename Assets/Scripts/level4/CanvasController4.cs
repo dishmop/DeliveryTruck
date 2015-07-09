@@ -115,7 +115,7 @@ public class CanvasController4 : MonoBehaviour {
 	
 	void showGraph(){
 		if (!showedGraph) {
-			loadGraphData.load ();
+			loadGraphData.load ("graphData.dat");
 			showedGraph = true;
 		}
 

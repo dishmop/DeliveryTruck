@@ -17,9 +17,9 @@ public class SaveGraphData : MonoBehaviour {
 	void Update () {
 	
 	}
-	public void save(){
+	public void save(String filename){
 		BinaryFormatter bf = new BinaryFormatter ();
-		FileStream file = File.Open (Application.persistentDataPath + "/graphData.dat", FileMode.Create);
+		FileStream file = File.Open (Application.persistentDataPath + "/" + filename, FileMode.Create);
 		GraphData graphData = new GraphData ();
 		graphData.setData(plotting.getData ());
 
@@ -27,17 +27,20 @@ public class SaveGraphData : MonoBehaviour {
 		file.Close ();
 	}
 
-	public void load(){
-		if (File.Exists (Application.persistentDataPath + "/graphData.dat")) {
+	public void load(String filename){
+		if (File.Exists (Application.dataPath + "/GraphData/" + filename)) {
 			BinaryFormatter bf = new BinaryFormatter ();
-			FileStream file = File.Open (Application.persistentDataPath + "/graphData.dat", FileMode.Open);
-			GraphData graphData = (GraphData) bf.Deserialize (file);
+			//FileStream file = File.Open (Application.persistentDataPath + "/" + filename, FileMode.Open);
+			FileStream file = File.Open (Application.dataPath + "/GraphData/" + filename, FileMode.Open);
+			GraphData graphData = (GraphData)bf.Deserialize (file);
 
 			UIGraph graph = graphPanel.GetComponent<UIGraph> ();
-			graph.setRed(true);
-			graph.SetAxesRanges (0f,100f,0f,4f);
-			graph.UploadData (graphData.getData());
-		} 
+			graph.setRed (true);
+			graph.SetAxesRanges (0f, 100f, 0f, 4f);
+			graph.UploadData (graphData.getData ());
+		} else {
+			Debug.LogError("File not found "+ Application.dataPath + "/GraphData/"+ filename);
+		}
 	}
 }
 [Serializable]
