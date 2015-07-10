@@ -109,11 +109,11 @@ public class FinishLineLevel4 : MonoBehaviour {
 		gameOverPanel.SetActive (true);
 		//Debug.Log ("After activating the panel.");
 		if (hasWon) {
-			gameOverText.color = Color.blue;
+			//gameOverText.color = Color.blue;
 			gameOverText.text = "Congratulations!\nYou have completed the level successfully.";
 			NRbuttonText.text = "Next Level";
 		} else {
-			gameOverText.color = new Color((73f/255f), (21f/255f), (37f/255f));
+			//gameOverText.color = new Color((73f/255f), (21f/255f), (37f/255f));
 			if(overSpeeding){
 				gameOverText.text = "Your are moving too fast :(\n" +
 					"Try again.";
@@ -157,7 +157,12 @@ public class FinishLineLevel4 : MonoBehaviour {
 	
 	public void gameOver(){
 		if (hasWon) {
-			Application.LoadLevel(Application.loadedLevel + 1);
+			if(Application.loadedLevel == 6){
+				Application.LoadLevel(1);
+			}else{
+				Application.LoadLevel(Application.loadedLevel + 1);
+			}
+
 		} else {
 			Application.LoadLevel(Application.loadedLevel);
 		}

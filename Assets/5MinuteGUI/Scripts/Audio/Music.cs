@@ -17,6 +17,7 @@ namespace FMG {
 		
 		public void Awake()
 		{
+
 			createMusic();
 			if(K_AUDIO!=null)
 			{
@@ -24,6 +25,7 @@ namespace FMG {
 				if(musicClip!=K_AUDIO.clip)
 				{
 					K_AUDIO.clip = musicClip;
+					K_AUDIO.ignoreListenerPause = true;
 					K_AUDIO.Play();
 				}
 			}

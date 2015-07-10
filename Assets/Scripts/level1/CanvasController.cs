@@ -163,6 +163,7 @@ public class CanvasController : MonoBehaviour {
 	//------------------------------------------------------
 
 	public void skipInstructions(){
+		slider.gameObject.GetComponent<Animator> ().enabled = false;
 		Destroy (instructionsPanel);
 		gameObject.GetComponent<TimerCountdown> ().enabled = true;
 	}

@@ -1,23 +1,16 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\level5\CanvasController5.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PauseMenu.cs">
     <Files>
       <File FileName="Assets\Scripts\PlayerController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\BackgroundMovement.cs" Line="1" Column="1" />
-      <File FileName="Assets\Standard Assets\2D\Scripts\Camera2DFollow.cs" Line="1" Column="1" />
-      <File FileName="Assets\Standard Assets\2D\Scripts\Platformer2DUserControl.cs" Line="1" Column="1" />
-      <File FileName="Assets\Standard Assets\2D\Scripts\PlatformerCharacter2D.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Plotting.cs" Line="1" Column="1" />
-      <File FileName="Assets\Plotter\Test\TestPlotter.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PlotManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\FinishRace.cs" Line="7" Column="28" />
-      <File FileName="Assets\Scripts\AirResistanceEffect.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\level3\TimerCountdown3.cs" Line="4" Column="28" />
-      <File FileName="Assets\Scripts\level4\CanvasController4.cs" Line="180" Column="1" />
-      <File FileName="Assets\Scripts\level5\CanvasController5.cs" Line="97" Column="53" />
-      <File FileName="Assets\Scripts\level5\TimerCountdown5.cs" Line="23" Column="49" />
-      <File FileName="Assets\Scripts\level4\TimerCountdown4.cs" Line="19" Column="27" />
-      <File FileName="Assets\Scripts\SaveGraphData.cs" Line="42" Column="74" />
+      <File FileName="Assets\Scripts\FinishRace.cs" Line="126" Column="1" />
+      <File FileName="Assets\Scripts\SceneOverview.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PauseMenu.cs" Line="74" Column="25" />
+      <File FileName="Assets\5MinuteGUI\Scripts\Audio\Music.cs" Line="42" Column="26" />
+      <File FileName="Assets\5MinuteGUI\Scripts\Audio\ClickEvent.cs" Line="14" Column="61" />
+      <File FileName="Assets\Scripts\level4\FinishLineLevel4.cs" Line="163" Column="56" />
+      <File FileName="Assets\Scripts\level1\CanvasController.cs" Line="174" Column="1" />
+      <File FileName="Assets\Scripts\SaveGraphData.cs" Line="31" Column="20" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

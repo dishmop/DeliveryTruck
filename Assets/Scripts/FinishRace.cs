@@ -70,11 +70,11 @@ public class FinishRace : MonoBehaviour {
 		yield return new WaitForSeconds (1f);
 		gameOverPanel.SetActive (true);
 		if (hasWon) {
-			gameOverText.color = Color.blue;
+			//gameOverText.color = Color.blue;
 			gameOverText.text = "Congratulations!\nYou have completed the level successfully.";
 			NRbuttonText.text = "Next Level";
 		} else {
-			gameOverText.color = new Color((73f/255f), (21f/255f), (37f/255f));
+			//gameOverText.color = new Color((73f/255f), (21f/255f), (37f/255f));
 			gameOverText.text = "You ran out of time :(\n" +
 				"Try again";
 			NRbuttonText.text = "Restart";
