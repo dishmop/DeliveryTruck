@@ -25,7 +25,7 @@ public class Plotting : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		data = new Vector2[maxNoPoints];
-		delayTime = Time.deltaTime * xScale;
+		delayTime = Time.fixedDeltaTime * xScale;
 		playerRigidbody =  playerObj.GetComponent<Rigidbody2D> ();
 		//  Create a new graph named "MouseX", with a range of 0 to 2000, colour green at position 100,100
 		//PlotManager.Instance.PlotCreate("Velocity", 0, 10, Color.green, new Vector2(100,100));
@@ -33,14 +33,14 @@ public class Plotting : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 
-		timeaxis += Time.deltaTime;
-		timer += Time.deltaTime;
+		timeaxis += Time.fixedDeltaTime;
+		timer += Time.fixedDeltaTime;
 		if (timer >= delayTime && playerRigidbody.velocity.x > 0) {
 			timer = 0f;
 			plotPoint(xScale * timeaxis,yScale * playerRigidbody.velocity.x );
-			if(count<maxNoPoints){
+			if(count<maxNoPoints-2){
 				count++;
 			}
 
@@ -53,6 +53,7 @@ public class Plotting : MonoBehaviour {
 		UIGraph graph = graphObj.GetComponent<UIGraph> ();
 		graph.setRed (false);
 		graph.SetAxesRanges (xAxisMin,xAxisMax,yAxisMin,yAxisMax);
+		Debug.Log ("Count is at " + count);
 		data.SetValue( new Vector2 (xPoint, yPoint), count);
 		graph.UploadData (data, (int)count);
 	}
@@ -60,4 +61,9 @@ public class Plotting : MonoBehaviour {
 	public Vector2[] getData(){
 		return data;
 	}
+
+//	void OnGUI(){
+//		GUI.Label (new Rect (10, 30, 300, 30), ("Count = " + count + "delayTime = " + delayTime));
+//		
+//	}
 }

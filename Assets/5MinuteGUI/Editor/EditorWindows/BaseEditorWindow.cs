@@ -10,7 +10,7 @@ public class BaseEditorWindow : EditorWindow
 	public void saveIt()
 	{
 		AssetDatabase.Refresh();
-		EditorUtility.SetDirty(m_object);
+		//EditorUtility.SetDirty(m_object);
 		AssetDatabase.SaveAssets();		
 	}
 	void OnDisable()

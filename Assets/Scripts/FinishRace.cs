@@ -67,7 +67,7 @@ public class FinishRace : MonoBehaviour {
 			soundPlayer.PlayOneShot(brakingSound);
 		}
 
-		yield return new WaitForSeconds (1f);
+		yield return new WaitForSeconds (2f);
 		gameOverPanel.SetActive (true);
 		if (hasWon) {
 			//gameOverText.color = Color.blue;
