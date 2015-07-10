@@ -77,28 +77,28 @@ public class CanvasController4 : MonoBehaviour {
 	public void playInstructions(){
 		switch (instruction) {
 		case 0:
-			instructionText.text ="In this level you are required to reach the finish line with a certain velocity and before" +
-				" time coutdown reaches zero.";
+			instructionText.text ="In this level your objective is to reach the finish line with a certain velocity and before" +
+				" coutdown timer reaches zero.";
 			reviewingScene = true;
 			break;
 		case 1:
 			//movingBack = true;
-			instructionText.text = "The best way to achieve that is to use the velocity/time graph on the side to control the truck" +
+			instructionText.text = "The best way to achieve that is to use the velocity/time graph above to control the truck" +
 				"movement.";
 			showGraph();
 			break;
 		case 2:
 			instructionText.text = "The road has air resistance in addition to friction\n" +
-				"Use your mouse to navigate through";
+				"Use your mouse to navigate through.";
 			reviewingScene = false;
 			navigate = true;
 			break;
 		case 3:
 			instructionText.text = "Now that you have seen the road, try to think of a strategy to achieve your objective," +
-				"using the knowledge you learnt from the previous levels.";
+				"using what you learnt from the previous levels.";
 			break;
 		case 4:
-			instructionText.text = "When you are ready press the start button to start.";
+			instructionText.text = "When you are ready press the start button.";
 			button.text = "Start";
 			break;
 		case 5:

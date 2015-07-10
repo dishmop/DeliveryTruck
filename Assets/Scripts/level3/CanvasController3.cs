@@ -80,13 +80,13 @@ public class CanvasController3 : MonoBehaviour {
 		switch (instruction) {
 		case 0:
 			instructionText.text ="When the truck moves through air it experiences a drag force " +
-				"in the opposite direction of the motion.";
+				"in the opposite direction of the motion due to air resistance.";
 			showingFriction = true;
 			break;
 		case 1:
 			movingBack = true;
-			instructionText.text = "The drag force or air resistance is proprotional to the speed of the truck" +
-				" the faster it moves the greater the drag force it experiences, as shown on the graph above.";
+			instructionText.text = "The drag force or air resistance is proprotional to the speed of the truck, i.e" +
+				" the faster it moves the greater drag force it experiences, as shown on the graph above.";
 			data = new Vector2[90];
 			for(int i =0; i<90; i++){
 				data[i] = new Vector2(i, 3 * (Mathf.Exp(-i/10f)));
@@ -94,7 +94,7 @@ public class CanvasController3 : MonoBehaviour {
 			showGraph(data);
 			break;
 		case 2:
-			instructionText.text = "If the fuel is pressed while moving through air resistance the drag force increases" +
+			instructionText.text = "If the truck is accelerating while moving through air, the drag force increases" +
 				" until it balances the forward force and the truck moves with steady speed, as shown on the graph above.";
 			data = new Vector2[90];
 			for(int i =0; i<90; i++){
@@ -103,11 +103,10 @@ public class CanvasController3 : MonoBehaviour {
 			showGraph(data);
 			break;
 		case 3:
-			instructionText.text = "The faster the truck moves over a air resistance the less decrease in speed it experiences.";
+			instructionText.text = "The faster the truck moves through air resistance the less decrease in speed it experiences.";
 			break;
 		case 4:
-			instructionText.text = "Your objective is again to reach the finish line as fast as possible" +
-				" To achieve this maxismised the area under the graph.";
+			instructionText.text = "Your objective is to reach the finish line as fast as possible with the minimum use of fuel.";
 			button.text = "Start";
 			break;
 		case 5:

@@ -7,7 +7,7 @@ public class CanvasController2 : MonoBehaviour {
 	public GameObject additionBackground;
 	public GameObject cameraObj;
 	public GameObject player;
-	//public GameObject plotter;
+	public GameObject arrow;
 	public GameObject finishLine;
 	public GameObject graphPanel;
 	public GameObject instructionsPanel;
@@ -79,7 +79,7 @@ public class CanvasController2 : MonoBehaviour {
 		Vector2[] data;
 		switch (instruction) {
 		case 0:
-			instructionText.text ="When the truck moves over a rough surface it experiences friction force " +
+			instructionText.text ="When the truck moves over a rough surface it experiences a friction force " +
 				"in the opposite direction of the motion.";
 			showingFriction = true;
 			break;
@@ -93,19 +93,22 @@ public class CanvasController2 : MonoBehaviour {
 			showGraph(data);
 			break;
 		case 2:
-			instructionText.text = "If the fuel is pressed while moving over a rough surface the forward force balances" +
-				" the backward friction force and the truck moves with steady speed, as shown on the graph above.";
+			instructionText.text = "If the truck is accelerating while moving over a rough surface the forward force balances" +
+				" the backward friction force and the truck moves with a steady speed, as shown on the graph above.";
 			data = new Vector2[]{
 				new Vector2(0.01f,0.01f), new Vector2(30f,3f), new Vector2(90f,3f) 
 			};
 			showGraph(data);
 			break;
 		case 3:
-			instructionText.text = "The faster the truck moves over a rough surface the less decrease in speed it experiences.";
+			instructionText.text = "Animated green arrows will help visualise the directions of the forces acting on the truck.\n" +
+				"The faster the truck moves over a rough surface the less decrease in speed it experiences.";
+			arrow.SetActive(true);
 			break;
 		case 4:
-			instructionText.text = "Your objective is again to reach the finish line as fast as possible" +
-				" To achieve this maxismised the area under the graph.";
+			arrow.SetActive(false);
+			instructionText.text = "Your objective is to reach the finish line as fast as possible" +
+				" To achieve this try to maxismise the area under the graph.";
 			button.text = "Start";
 			break;
 		case 5:

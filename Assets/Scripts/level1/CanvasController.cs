@@ -7,7 +7,7 @@ public class CanvasController : MonoBehaviour {
 	public GameObject additionBackground;
 	public GameObject cameraObj;
 	public GameObject player;
-	//public GameObject plotter;
+	public GameObject areaUnderGraph;
 	public GameObject finishLine;
 	public GameObject graphPanel;
 	public GameObject instructionsPanel;
@@ -19,6 +19,7 @@ public class CanvasController : MonoBehaviour {
 	public float endPos = 70f ;
 	public float movingTime = 10f;
 	public float startRaceFadeOutTime = 2f;
+	public int numberOfLines = 9;
 
 	PlayerController playerController;
 	Plotting plotting;
@@ -34,6 +35,7 @@ public class CanvasController : MonoBehaviour {
 	Vector3 startingPosition;
 	Vector3 endingPosition;
 	bool startedRace;
+	UIGraph graph;
 
 	void Awake(){
 		//panel = GetComponent<Image> ();
@@ -47,6 +49,9 @@ public class CanvasController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		graph = graphPanel.GetComponent<UIGraph> ();
+		graph.SetAxesRanges (0f,100f,0f,4f);
+
 		playInstructions ();
 		startingPosition = cameraObj.transform.position;
 		endingPosition = new Vector3 (endPos, cameraObj.transform.position.y,cameraObj.transform.position.z);
@@ -65,8 +70,8 @@ public class CanvasController : MonoBehaviour {
 		if (animatingSlider) {
 			timer += Time.deltaTime;
 			animateSlider(timer/4f);
-
 		}
+
 		if (reviewingScene) {
 			if (timer2 >= (movingTime+1)) {
 				cameraObj.transform.position = Vector3.Lerp (startingPosition, endingPosition, (2 - ((timer2-1) / movingTime)));
@@ -77,7 +82,7 @@ public class CanvasController : MonoBehaviour {
 			//Debug.Log((timer2/movingTime));
 
 			if (timer2 >= ((2 * movingTime)+1)) {
-				Debug.Log ("we are here");
+				//Debug.Log ("we are here");
 				reviewingScene = false;
 				cameraObj.transform.position = startingPosition;
 				startRace.text = "Ready...";
@@ -90,29 +95,31 @@ public class CanvasController : MonoBehaviour {
 	public void playInstructions(){
 		switch (instruction) {
 		case 0:
-			instructionText.text ="Welcome to Delivery Truck game.\n" +
+			instructionText.text ="Welcome to Speed Truck.\n" +
 				"In this game, you will use velocity against time graphs to help you drive the truck " +
-					"to a checkpoint before the gate closes.";
+					"to a checkpoint, at a certain speed, before you run out of time.";
 			break;
 		case 1:
-			instructionText.text = "A velocity against time graph is used to analyse the motion" +
-				" of moving objects.";
+			instructionText.text = "A velocity/time graph is used to analyse the motion" +
+				" of moving objects. It also gives information about the distance travelled and the acceleration.";
 			showGraph();
 			break;
 		case 2:
 			instructionText.text = "The area under the graph represents the distance travelled and " +
 				"the slope of the graph gives the acceleration.";
+			StartCoroutine(animateArea());
 			break;
 		case 3:
+			areaUnderGraph.SetActive (false);
 			instructionText.text = "Press 'Space' to apply a constant force, i.e accelerate. " +
-				"Be careful you have a limited amount of fuel, the screen will flash red when you are run out of fuel.";
+				"Be careful! you have a limited amount of fuel, the screen will flash red when you are run out of fuel.";
 			animatingSlider = true;
 			break;
 		case 4:
 			animatingSlider = false;
 			animateSlider(0f);
 			instructionText.text = "Your objective is to reach the finish line as fast as possible" +
-				" To achieve this maxismised the area under the graph.";
+				" To achieve this, maxismise the area under the graph to get maximum distance.";
 			button.text = "Start";
 			break;
 		case 5:
@@ -124,14 +131,23 @@ public class CanvasController : MonoBehaviour {
 	}
 
 	void showGraph(){
-		UIGraph graph = graphPanel.GetComponent<UIGraph> ();
 
-		graph.SetAxesRanges (0f,100f,0f,4f);
 		Vector2[] data = new Vector2[]{
 			new Vector2(0.01f,0.01f), new Vector2(30f,3f), new Vector2(60f,3f), new Vector2(90f,0.01f) 
 		};
 		graph.UploadData (data);
 	}
+	
+
+	IEnumerator animateArea(){
+		areaUnderGraph.SetActive (true);
+		Image image = areaUnderGraph.GetComponent<Image> ();
+		for (float t=0f; t<2f; t += Time.deltaTime) {
+			image.color = Color.Lerp(Color.clear, Color.white, (t/2f));
+			yield return new WaitForSeconds(Time.deltaTime);
+		}
+	}
+
 	void animateSlider(float weight){
 		slider.gameObject.GetComponent<Animator> ().enabled = true;
 		slider.maxValue = 10f;
