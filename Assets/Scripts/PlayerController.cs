@@ -4,6 +4,7 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
+	private static int score = 0 ;
 	//public float timeBlocks = 5f;
 	public Text lowFuelText;
 	public Image runOutOfFuelImage;
@@ -20,18 +21,24 @@ public class PlayerController : MonoBehaviour {
 	public Slider slider;
 	public bool gameOver;
 	public GameObject arrow;
+	public GameObject backArrow;
 	public Color flashColour = new Color(1f,0f,0f,0.5f);
-
+	public Text amountofForceText;
 
 	private Rigidbody2D objRigidbody;
 	private AudioSource playerAudioSource;
 	private float initialVolume;
 	private float initialPitch;
 	private bool outOfFuel;
-
+	private int amountOfForce = 1;
+	private float timer;
+	private bool arrowActive;
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 	// Use this for initialization
 	void Start () {
+
+		amountofForceText.text = "Force: "+amountOfForce;
+
 		objRigidbody = GetComponent<Rigidbody2D> ();
 		objRigidbody.velocity = new Vector2 (initialSpeed, 0f);
 
@@ -82,13 +89,40 @@ public class PlayerController : MonoBehaviour {
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 	void FixedUpdate(){
 
-		if (Input.GetKey (KeyCode.Space) && fuelTime >= 0 && !gameOver /* timer <(fuelTime / timeBlocks) */) {
-			fuelTime -= Time.fixedDeltaTime;
+		timer += Time.fixedDeltaTime;
+		if (Input.GetButton ("Vertical") && timer >=0.2f ) {
+			timer = 0f;
+			float v = Input.GetAxis("Vertical");
+			if(v > 0f && amountOfForce < 4){
+				amountOfForce++;
+				amountofForceText.text = "Force: " + amountOfForce;
+				//Debug.Log("Increasing "+amountOfForce);
+			}
+			if(v < 0f && amountOfForce > 1){
+				amountOfForce--;
+				amountofForceText.text = "Force: " + amountOfForce;
+				//Debug.Log("Decreasing "+amountOfForce);
+			}
+		}
+
+
+		if (Input.GetKey (KeyCode.Space) && fuelTime > 0 && !gameOver /* timer <(fuelTime / timeBlocks) */) {
+			fuelTime -= (amountOfForce)* Time.fixedDeltaTime;
 			slider.value = fuelTime;
 			arrow.SetActive (true);
-			accelerate (force);
+			accelerate (amountOfForce * force);
 		} else {
 			arrow.SetActive (false);
+		}
+		if (Input.GetKey (KeyCode.LeftShift) && fuelTime <slider.maxValue && !gameOver && objRigidbody.velocity.x > 0f) {
+			fuelTime += (amountOfForce)* Time.fixedDeltaTime;
+			slider.value = fuelTime;
+			backArrow.SetActive (true);
+			arrowActive = true;
+			accelerate (- amountOfForce * force);
+		} else if(arrowActive) {
+			backArrow.SetActive(false);
+			arrowActive = false;
 		}
 	}
 
@@ -132,7 +166,12 @@ public class PlayerController : MonoBehaviour {
 	}
 	//-------------------------------------------------------------------------------------------------------------------------------------------------
 
-
+	public static void updateScore(int value){
+		score = value;
+	}
+	public static int getScore(){
+		return score;
+	}
 
 
 }

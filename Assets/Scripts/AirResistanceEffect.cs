@@ -22,7 +22,9 @@ public class AirResistanceEffect : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D coll){
 		isInside = true;
-		arrow.SetActive (true);
+		if (!arrow.activeSelf) {
+			arrow.SetActive (true);
+		}
 	}
 
 //	void OnTriggerStay2D(Collider2D coll){

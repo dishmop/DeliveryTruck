@@ -107,8 +107,7 @@ public class CanvasController2 : MonoBehaviour {
 			break;
 		case 4:
 			arrow.SetActive(false);
-			instructionText.text = "Your objective is to reach the finish line as fast as possible" +
-				" To achieve this try to maxismise the area under the graph.";
+			instructionText.text = "When there are more than one force acting on the truck, it accelerates/decelerates in the direction of the resultant force.";
 			button.text = "Start";
 			break;
 		case 5:

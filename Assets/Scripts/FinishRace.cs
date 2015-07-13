@@ -4,6 +4,8 @@ using System.Collections;
 
 public class FinishRace : MonoBehaviour {
 
+	public GameObject arrow;
+	public GameObject airResistance;
 	public GameObject nextRestartButton;
 	public Text NRbuttonText;
 	public GameObject gameOverPanel;
@@ -11,15 +13,22 @@ public class FinishRace : MonoBehaviour {
 	public AudioClip gameOverSound;
 	public AudioClip winingSound;
 	public AudioClip brakingSound;
+	public AudioClip WindSound;
 	public int timer = 12;
 	public GameObject minutes;
 	public GameObject seconds;
 	public float slowingRate = 5f;
+	public bool level3 = false;
+	public int windStartingTime = 34;
+	public int windDuration = 12;
 
 	Animator anim1;
 	Animator anim2;
 	AudioSource soundPlayer;
 	bool hasWon;
+	bool setScore;
+	int currentScore=0;
+
 
 	void Awake(){
 		gameOverPanel.SetActive (false);
@@ -71,7 +80,20 @@ public class FinishRace : MonoBehaviour {
 		gameOverPanel.SetActive (true);
 		if (hasWon) {
 			//gameOverText.color = Color.blue;
-			gameOverText.text = "Congratulations!\nYou have completed the level successfully.";
+
+			if(!setScore){
+				currentScore = PlayerController.getScore();
+				setScore = true;
+			}
+			int bonusScore = Mathf.RoundToInt(10f * GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().fuelTime);
+			int totalScore = currentScore + 100 + bonusScore;
+			gameOverText.text = "Congratulations!\nYou have completed the level successfully.\n" +
+				"Previous Score: " + currentScore + "\n" +
+				"This level Score: 100\n" +
+					"Bonus Score: " + bonusScore +"\n" +
+					"Total Score: " + totalScore;
+			PlayerController.updateScore(totalScore);
+
 			NRbuttonText.text = "Next Level";
 		} else {
 			//gameOverText.color = new Color((73f/255f), (21f/255f), (37f/255f));
@@ -94,6 +116,23 @@ public class FinishRace : MonoBehaviour {
 			anim1.speed = 0f;
 			anim2.Play("TimerAnim",0,(Mathf.Floor (i / 10)/10f));
 			anim2.speed = 0f;
+			//*********************************************************
+			if(level3){
+				if(i == windStartingTime){
+					airResistance.SetActive(true);
+					soundPlayer.clip = WindSound;
+					soundPlayer.loop = true;
+					soundPlayer.Play();
+				}
+				if(i == (windStartingTime - windDuration)){
+					airResistance.SetActive(false);
+					soundPlayer.Stop();
+					soundPlayer.loop = false;
+					arrow.SetActive(false);
+				}
+			
+			}
+			//*********************************************************
 			yield return new WaitForSeconds(1f);
 		}
 		if (!hasWon) {

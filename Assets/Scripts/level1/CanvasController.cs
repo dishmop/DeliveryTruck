@@ -39,6 +39,7 @@ public class CanvasController : MonoBehaviour {
 
 	void Awake(){
 		//panel = GetComponent<Image> ();
+
 		playerController = player.GetComponent<PlayerController> ();
 		plotting = cameraObj.GetComponent<Plotting> ();
 		finishRace = finishLine.GetComponent<FinishRace> ();
@@ -97,7 +98,7 @@ public class CanvasController : MonoBehaviour {
 		case 0:
 			instructionText.text ="Welcome to Speed Truck.\n" +
 				"In this game, you will use velocity against time graphs to help you drive the truck " +
-					"to a checkpoint, at a certain speed, before you run out of time.";
+					"to the finish line before you run out of time.";
 			break;
 		case 1:
 			instructionText.text = "A velocity/time graph is used to analyse the motion" +
@@ -111,18 +112,25 @@ public class CanvasController : MonoBehaviour {
 			break;
 		case 3:
 			areaUnderGraph.SetActive (false);
-			instructionText.text = "Press 'Space' to apply a constant force, i.e accelerate. " +
-				"Be careful! you have a limited amount of fuel, the screen will flash red when you are run out of fuel.";
+			instructionText.text = "Press 'Space' to apply a forward force, i.e accelerate, and 'left shift' to apply a backward force, i.e. brake. " +
+				"Be careful! you have a limited amount of fuel, the screen will flash red when you are run out of fuel.\n" +
+					"The truck uses a battery to save the kinetic energy when you brake, so that will increase the amount of fuel you have.";
 			animatingSlider = true;
 			break;
 		case 4:
-			animatingSlider = false;
-			animateSlider(0f);
-			instructionText.text = "Your objective is to reach the finish line as fast as possible" +
-				" To achieve this, maxismise the area under the graph to get maximum distance.";
-			button.text = "Start";
+			instructionText.text = "Use the 'Up' and 'Down' arrows to change the amount of force you want to apply on the truck.\n" +
+				"The number on the side of the fuel bar indicates the amount of force you are currently selecting.\n" +
+				"The greater the force you apply the more fuel it takes.";
 			break;
 		case 5:
+			animatingSlider = false;
+			animateSlider(0f);
+			instructionText.text = "Your objective is to reach the finish line as fast as possible." +
+				" To achieve this, maxismise the area under the graph to get maximum distance.\n" +
+					"You will get extra points for any fuel remains.";
+			button.text = "Start";
+			break;
+		case 6:
 
 			reviewScene();
 			break;
@@ -164,6 +172,7 @@ public class CanvasController : MonoBehaviour {
 	}
 	public void startLevel(){
 		animatingSlider = false;
+		slider.gameObject.GetComponent<Animator> ().enabled = false;
 		Destroy (additionBackground);
 		gameObject.GetComponent<TimerCountdown>().enabled = false;
 		startRace.text = "Go!";

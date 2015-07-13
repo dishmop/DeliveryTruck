@@ -5,7 +5,8 @@ using System.Collections;
 
 public class CanvasController4 : MonoBehaviour {
 
-	public SaveGraphData loadGraphData;
+	//public SaveGraphData loadGraphData;
+	public GameObject graphPanel;
 	public GameObject overallSceneView;
 	//public GameObject additionBackground;
 	public GameObject cameraObj;
@@ -77,28 +78,27 @@ public class CanvasController4 : MonoBehaviour {
 	public void playInstructions(){
 		switch (instruction) {
 		case 0:
-			instructionText.text ="In this level your objective is to reach the finish line with a certain velocity and before" +
-				" coutdown timer reaches zero.";
-			reviewingScene = true;
+			instructionText.text ="In this level, you speed should not exceed a certain limit, indicated on the graph above, only when you cross the finish line.";
+			showGraph();
+
 			break;
 		case 1:
 			//movingBack = true;
-			instructionText.text = "The best way to achieve that is to use the velocity/time graph above to control the truck" +
-				"movement.";
-			showGraph();
+			instructionText.text = "You have to be within a distance when you cross the finish line, so slow down if you are moving fast to minimise the stopping distance.";
+			reviewingScene = true;
 			break;
 		case 2:
-			instructionText.text = "The road has air resistance in addition to friction\n" +
-				"Use your mouse to navigate through.";
+			instructionText.text = "The wind blows near the start at time 34 for a duration of 12 seconds as indicated on the graph.\n" +
+				"There is also friction throughout the road.";
 			reviewingScene = false;
-			navigate = true;
 			break;
 		case 3:
-			instructionText.text = "Now that you have seen the road, try to think of a strategy to achieve your objective," +
-				"using what you learnt from the previous levels.";
+			instructionText.text = "Use the arrows keys to navigate the road.";
+			navigate = true;
 			break;
 		case 4:
-			instructionText.text = "When you are ready press the start button.";
+			instructionText.text = "Now that you have seen the road, try to think of a strategy to achieve your objective," +
+				"using what you learnt from the previous levels.";
 			button.text = "Start";
 			break;
 		case 5:
@@ -111,14 +111,21 @@ public class CanvasController4 : MonoBehaviour {
 	
 	void showGraph(){
 		if (!showedGraph) {
-			loadGraphData.load ("graphData.dat");
+			//loadGraphData.load ("graphData.dat");
+			UIGraph graph = graphPanel.GetComponent<UIGraph> ();
+			graph.setRed (true);
+			graph.SetAxesRanges (0f, 100f, 0f, 4f);
+			Vector2[] data = new Vector2[] {
+				new Vector2(0.01f,finishRace.winningSpeed * plotting.yScale) , new Vector2(90f, finishRace.winningSpeed * plotting.yScale)
+			};
+			graph.UploadData (data);
 			showedGraph = true;
 		}
 
 	}
 	
 	void navigateScene(){
-		cameraObj.transform.Translate (new Vector3(mouseSensitivity * Input.GetAxis("Mouse X"),0f,0f));
+		cameraObj.transform.Translate (new Vector3(mouseSensitivity * Input.GetAxis("Horizontal"),0f,0f));
 		Vector3 cameraPosition = cameraObj.transform.position;
 		cameraPosition.x = Mathf.Clamp (cameraPosition.x, startingPosition.x,endPos);
 		cameraObj.transform.position = cameraPosition;

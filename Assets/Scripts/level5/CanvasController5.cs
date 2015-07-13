@@ -5,7 +5,8 @@ using System.Collections;
 
 public class CanvasController5 : MonoBehaviour {
 	
-	public SaveGraphData loadGraphData;
+	//public SaveGraphData loadGraphData;
+	public GameObject graphPanel;
 	public GameObject overallSceneView;
 	//public GameObject additionBackground;
 	public GameObject cameraObj;
@@ -78,30 +79,27 @@ public class CanvasController5 : MonoBehaviour {
 
 		switch (instruction) {
 		case 0:
-			instructionText.text ="Your objective is to reach the finish line with a certain speed and before" +
-				" the coutdown timer reaches zero.";
+			instructionText.text ="This level is very similar to the previous one. However, wind blows near the end of the countdown timer at 12 for a duration of 7 seconds.";
+			showGraph();
 			reviewingScene = true;
 			break;
 		case 1:
 			//movingBack = true;
-			instructionText.text = "Use the velocity/time graph above to control the truck" +
-				"movement.";
-			showGraph();
+			instructionText.text = "There are also two different types of friction. The first one has less coefficient of friction, i.e. less friction force, that the second one.\n" +
+				"Bear that in mind.";
+
 			break;
 		case 2:
-			instructionText.text = "The road has various difficult challenges, but a turpo is there to boost your speed up.\n" +
-				"Use your mouse to navigate through.";
+			instructionText.text = "There is turbo you can collect that boost your speed up. Press the 'C' key to use the turpo if you have collected one.\n" +
+				"Use the arrows keys to navigate the road.";
 			reviewingScene = false;
 			navigate = true;
 			break;
 		case 3:
 			instructionText.text = "Now that you have seen the road, try to think of a strategy to achieve your objective.";
-			break;
-		case 4:
-			instructionText.text = "When you are ready press the start button.";
 			button.text = "Start";
 			break;
-		case 5:
+		case 4:
 			
 			skipInstructions();
 			break;
@@ -111,14 +109,21 @@ public class CanvasController5 : MonoBehaviour {
 	
 	void showGraph(){
 		if (!showedGraph) {
-			loadGraphData.load ("graphData3.dat");
+			//loadGraphData.load ("graphData3.dat");
+			UIGraph graph = graphPanel.GetComponent<UIGraph> ();
+			graph.setRed (true);
+			graph.SetAxesRanges (0f, 100f, 0f, 4f);
+			Vector2[] data = new Vector2[] {
+				new Vector2(0.01f,finishRace.winningSpeed * plotting.yScale) , new Vector2(90f, finishRace.winningSpeed * plotting.yScale)
+			};
+			graph.UploadData (data);
 			showedGraph = true;
 		}
 		
 	}
 	
 	void navigateScene(){
-		cameraObj.transform.Translate (new Vector3(mouseSensitivity * Input.GetAxis("Mouse X"),0f,0f));
+		cameraObj.transform.Translate (new Vector3(mouseSensitivity * Input.GetAxis("Horizontal"),0f,0f));
 		Vector3 cameraPosition = cameraObj.transform.position;
 		cameraPosition.x = Mathf.Clamp (cameraPosition.x, startingPosition.x,endPos);
 		cameraObj.transform.position = cameraPosition;

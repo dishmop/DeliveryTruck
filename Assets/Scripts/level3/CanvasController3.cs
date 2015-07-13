@@ -7,7 +7,7 @@ public class CanvasController3 : MonoBehaviour {
 	public GameObject additionBackground;
 	public GameObject cameraObj;
 	public GameObject player;
-	//public GameObject plotter;
+	public GameObject airResistance;
 	public GameObject finishLine;
 	public GameObject graphPanel;
 	public GameObject instructionsPanel;
@@ -81,7 +81,7 @@ public class CanvasController3 : MonoBehaviour {
 		case 0:
 			instructionText.text ="When the truck moves through air it experiences a drag force " +
 				"in the opposite direction of the motion due to air resistance.";
-			showingFriction = true;
+			//showingFriction = true;
 			break;
 		case 1:
 			movingBack = true;
@@ -103,10 +103,12 @@ public class CanvasController3 : MonoBehaviour {
 			showGraph(data);
 			break;
 		case 3:
-			instructionText.text = "The faster the truck moves through air resistance the less decrease in speed it experiences.";
+			instructionText.text = "In this level the wind blows when the timer reaches 25 for a duration of 15 seconds, as indicated on the time axis in the graph above.";
+			airResistance.SetActive(true);
 			break;
 		case 4:
-			instructionText.text = "Your objective is to reach the finish line as fast as possible with the minimum use of fuel.";
+			instructionText.text = "To minimise the effect of air resistance, try to move as slow as possible, when the wind blows.";
+			airResistance.SetActive(false);
 			button.text = "Start";
 			break;
 		case 5:

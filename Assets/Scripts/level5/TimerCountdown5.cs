@@ -44,7 +44,7 @@ public class TimerCountdown5 : MonoBehaviour {
 		soundPlayer.Play ();
 		for (int i = 0; i <= signalTimer; i++) {
 			
-			Debug.Log("Animation is at " + (i/(signalTimer+1)));
+			//Debug.Log("Animation is at " + (i/(signalTimer+1)));
 			float fraction = Mathf.Clamp((i/(signalTimer+1)),0,1);
 			anim3.Play("Signals_",0,fraction);
 			anim3.speed = 0f;

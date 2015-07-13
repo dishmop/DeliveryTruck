@@ -53,7 +53,7 @@ public class Plotting : MonoBehaviour {
 		UIGraph graph = graphObj.GetComponent<UIGraph> ();
 		graph.setRed (false);
 		graph.SetAxesRanges (xAxisMin,xAxisMax,yAxisMin,yAxisMax);
-		Debug.Log ("Count is at " + count);
+		//Debug.Log ("Count is at " + count);
 		data.SetValue( new Vector2 (xPoint, yPoint), count);
 		graph.UploadData (data, (int)count);
 	}
